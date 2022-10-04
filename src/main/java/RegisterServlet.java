@@ -26,6 +26,13 @@ import org.apache.commons.lang3.text.*;
 import org.w3c.dom.Text;
 import org.apache.commons.text.StringEscapeUtils;
 
+import org.owasp.esapi.ESAPI;
+
+import org.apache.commons.logging.*;
+
+import org.owasp.encoder.*;
+import org.owasp.encoder.tag.*;
+
 
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register")
@@ -85,6 +92,17 @@ public class RegisterServlet extends HttpServlet {
         String test = StringEscapeUtils.escapeHtml4(request.getParameter("login"));
         System.out.println("Moin hier geht es los-----------------");
         System.out.println(test);
+        //System.out.println("ESAPI.accessController found: " + ESAPI.accessController());
+
+        String value = ESAPI.encoder().canonicalize(test);
+        String test2 = ESAPI.encoder().encodeForHTML(test);
+        value = value.replaceAll("\0", "");
+        System.out.println(value);
+        System.out.println("This is value of test2 " + test2);
+        String test3 = ESAPI.encoder().decodeForHTML(test2);
+        System.out.println("This is value of test3 " + test3);
+
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         System.out.println(sdf2.format(timestamp) + " " + " " + "Parameter for mail is"+" "+ login);

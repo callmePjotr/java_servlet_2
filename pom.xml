@@ -59,16 +59,38 @@
         </dependency>
 
         <dependency>
-            <groupId>OWASP</groupId>
-            <artifactId>ESAPI</artifactId>
-            <version>2.0</version>
+            <groupId>org.owasp.esapi</groupId>
+            <artifactId>esapi</artifactId>
+            <version>2.5.0.0</version>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/esapi-2.5.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/commons-logging-1.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder-jsp</artifactId>
+            <version>1.2.3</version>
         </dependency>
 
 
 
 
 
+
     </dependencies>
+
 
 
 
