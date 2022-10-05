@@ -203,7 +203,7 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println(sdf2.format(timestamp) + " " + " " + "username or password are incorrect");
             }else if (encryptpw.equals(pass) || email.equals(login) ){
                 System.out.println(sdf2.format(timestamp) + " " + " " + "Login successful");
-                getServletContext().getRequestDispatcher("/WEB-INF/bonk.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
                 System.out.println(sdf2.format(timestamp) + " " + " " + "user " + login + " was successfully authenticated");
                 System.out.println(sdf2.format(timestamp) + " " + " " + "redirecting to bonk.jsp");
             }else{
