@@ -15,7 +15,7 @@
   <hr>
   <p>${error}</p>
 
-  <p>Hello ${person.firstName} ${person.lastName}, nice to meet you!</p>
+  <p>Hello ${firstName} ${person.lastName}, nice to meet you!</p>
     <p>You are ${person.age}</p>
 
 

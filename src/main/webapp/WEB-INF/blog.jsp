@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="org.owasp.esapi.ESAPI" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -178,6 +179,20 @@
 
 </head>
 <body>
+
+<%
+    String safe = ESAPI.encoder().encodeForHTML( "<script>alert(\\\"hello there\\\") </script>" );
+    //String safe = "<script>alert(\"hello there\") </script>";
+    Object message = request.getAttribute("message");
+
+    String name = request.getAttribute("name").toString();
+    String email = request.getAttribute("email").toString();
+    String kommentar = request.getAttribute("kommentar").toString();
+
+%>
+
+
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="be-comment-block">
@@ -191,7 +206,7 @@
             <div class="be-comment-content">
 
                     <span class="be-comment-name">
-                        <a href="blog-detail-2.html">Ravi Sah</a>
+                        <a href="blog-detail-2.html"><%=name%></a>
                     </span>
                 <span class="be-comment-time">
                         <i class="fa fa-clock-o"></i>
@@ -199,9 +214,8 @@
                     </span>
 
                 <p class="be-comment-text">
-                    Pellentesque gravida tristique ultrices.
-                    Sed blandit varius mauris, vel volutpat urna hendrerit id.
-                    Curabitur rutrum dolor gravida turpis tristique efficitur.
+
+                    <%=kommentar%>
                 </p>
             </div>
         </div>
@@ -245,7 +259,7 @@
                 </p>
             </div>
         </div>
-        <form class="form-block">
+        <form class="form-block" method="post" action="/WEB-INF/blog.jsp">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group fl_icon">
@@ -262,7 +276,7 @@
             </div>
             <div class="col-xs-12">
                 <div class="form-group">
-                    <textarea class="form-input" required="" placeholder="Your text"></textarea>
+                    <textarea class="form-input" required="" name="checkthis" placeholder="Your text"></textarea>
                 </div>
             </div>
             <button class="btn btn-primary pull-right">submit</button>
@@ -270,6 +284,8 @@
         </form>
     </div>
 </div>
+
+
 
 </body>
 </html>

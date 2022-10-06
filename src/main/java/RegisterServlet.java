@@ -1,11 +1,7 @@
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,19 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.io.*;
 
-import org.apache.commons.lang3.text.*;
-import org.w3c.dom.Text;
 import org.apache.commons.text.StringEscapeUtils;
 
 import org.owasp.esapi.ESAPI;
-
-import org.apache.commons.logging.*;
-
-import org.owasp.encoder.*;
-import org.owasp.encoder.tag.*;
-
 
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register")
@@ -203,7 +190,9 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println(sdf2.format(timestamp) + " " + " " + "username or password are incorrect");
             }else if (encryptpw.equals(pass) || email.equals(login) ){
                 System.out.println(sdf2.format(timestamp) + " " + " " + "Login successful");
-                getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
+                //getServletContext().getRequestDispatcher("/ServlettoJSP.java").forward(request,response);
+                getServletContext().getRequestDispatcher("/ServlettoJSP").forward(request,response);
+
                 System.out.println(sdf2.format(timestamp) + " " + " " + "user " + login + " was successfully authenticated");
                 System.out.println(sdf2.format(timestamp) + " " + " " + "redirecting to bonk.jsp");
             }else{
