@@ -259,24 +259,24 @@
                 </p>
             </div>
         </div>
-        <form class="form-block" method="post" action="/WEB-INF/blog.jsp">
+        <form class="form-block" method="post" action="/AddCommentServlet">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group fl_icon">
                         <div class="icon"><i class="fa fa-user"></i></div>
-                        <input class="form-input" type="text" placeholder="Your name">
+                        <input class="form-input" type="text" placeholder="Your name" name="name">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 fl_icon">
                     <div class="form-group fl_icon">
                         <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                        <input class="form-input" type="text" placeholder="Your email">
+                        <input class="form-input" type="text" placeholder="Your email" name="mail_addr">
                     </div>
                 </div>
             </div>
             <div class="col-xs-12">
                 <div class="form-group">
-                    <textarea class="form-input" required="" name="checkthis" placeholder="Your text"></textarea>
+                    <textarea class="form-input" required="" name="comment" placeholder="Your text" ></textarea>
                 </div>
             </div>
             <button class="btn btn-primary pull-right">submit</button>

@@ -68,6 +68,13 @@ public class ServlettoJSP extends HttpServlet {
         request.setAttribute("name", name);
         request.setAttribute("email", email);
         request.setAttribute("kommentar", kommentar);
+
+        //Verbindung wieder schließen
+        try {
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
     }
 }
