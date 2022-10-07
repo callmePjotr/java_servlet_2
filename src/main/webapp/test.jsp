@@ -183,11 +183,12 @@
 
   String name = request.getAttribute("name").toString();
   String email = request.getAttribute("email").toString();
-  String kommentar = request.getAttribute("kommentar").toString();
+  //String kommentar = request.getAttribute("kommentar").toString();
 
-    String alles = request.getAttribute("alles").toString();
+  String alles = request.getAttribute("alles").toString();
     
   request.setAttribute("map", alles);
+  String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
 
 %>
 
