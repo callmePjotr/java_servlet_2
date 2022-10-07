@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,12 +30,16 @@ public class ServlettoJSP extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        HashMap<String, String> hash_map = new HashMap<String, String>();
 
         try {
             con = connect.connectToDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        List<String> users = new ArrayList<String>();
+        List<String> mails = new ArrayList<String>();
+        List<String> comments = new ArrayList<String>();
 
         try {
             String sql = "SELECT name, email, kommentar FROM kommentare";
@@ -41,14 +48,23 @@ public class ServlettoJSP extends HttpServlet {
             result = preparedStatement.executeQuery();
             while (result.next()){
                 name = result.getString("name");
+                //users.add(name);
                 email = result.getString("email");
+                //mails.add(email);
                 kommentar = result.getString("kommentar");
+                comments.add(kommentar);
+
+                hash_map.put(name, kommentar);
             }
 
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //System.out.println(users);
+        //System.out.println(mails);
+        //System.out.println(comments);
+        System.out.println(hash_map);
 
 
 
@@ -65,9 +81,11 @@ public class ServlettoJSP extends HttpServlet {
             //request.setAttribute("age", age);
 
         }
-        request.setAttribute("name", name);
-        request.setAttribute("email", email);
-        request.setAttribute("kommentar", kommentar);
+        request.setAttribute("name", users);
+        request.setAttribute("email", mails);
+        request.setAttribute("kommentar", comments);
+
+        request.setAttribute("alles", hash_map);
 
         //Verbindung wieder schließen
         try {
@@ -75,6 +93,7 @@ public class ServlettoJSP extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
+        //getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
     }
 }

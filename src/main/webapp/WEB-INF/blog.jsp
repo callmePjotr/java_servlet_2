@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="org.owasp.esapi.ESAPI" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -187,7 +189,7 @@
 
     String name = request.getAttribute("name").toString();
     String email = request.getAttribute("email").toString();
-    String kommentar = request.getAttribute("kommentar").toString();
+    String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
 
 %>
 
@@ -217,6 +219,10 @@
 
                     <%=kommentar%>
                 </p>
+                <c:forEach var="students" items="${students}" >
+                    ${student}
+                    <br/>
+                </c:forEach>
             </div>
         </div>
         <div class="be-comment">
