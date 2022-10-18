@@ -1,3 +1,5 @@
+import model.comments;
+
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.events.Comment;
 
 @WebServlet(name = "ServlettoJSP", urlPatterns = "/ServlettoJSP")
 public class ServlettoJSP extends HttpServlet {
@@ -81,11 +84,27 @@ public class ServlettoJSP extends HttpServlet {
             //request.setAttribute("age", age);
 
         }
+        int length = comments.size();
         request.setAttribute("name", users);
         request.setAttribute("email", mails);
+        request.setAttribute("length",length);
         request.setAttribute("kommentar", comments);
 
         request.setAttribute("alles", hash_map);
+        //request.setAttribute("comments", new model.comments());
+
+        comments com = new comments();
+
+        ArrayList list =new ArrayList();
+        list.add("Java");
+        list.add("Hadoop");
+        list.add("Spark");
+        list.add("Hive");
+        list.add("Python");
+        list.add("C++");
+        list.add("Machine Learning");
+        com.setComment(list);
+        request.setAttribute("comments2", new model.comments());
 
         //Verbindung wieder schließen
         try {
@@ -93,7 +112,7 @@ public class ServlettoJSP extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
-        getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/WEB-INF/blog.jsp").forward(request,response);
+        //getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
     }
 }

@@ -190,6 +190,7 @@
     String name = request.getAttribute("name").toString();
     String email = request.getAttribute("email").toString();
     String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
+    String anz_kommentare = ESAPI.encoder().encodeForHTML(request.getAttribute("length").toString());
 
 %>
 
@@ -198,73 +199,33 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="be-comment-block">
-        <h1 class="comments-title">Comments (3)</h1>
-        <div class="be-comment">
-            <div class="be-img-comment">
-                <a href="blog-detail-2.html">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-                </a>
-            </div>
-            <div class="be-comment-content">
+        <h1 class="comments-title">Comments (<%=anz_kommentare%>)</h1>
+        <c:forEach items="<%=kommentar%>" var="comment">
+            <div class="be-comment">
+                <div class="be-img-comment">
+                    <a href="blog-detail-2.html">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                    </a>
+                </div>
+                <div class="be-comment-content">
 
                     <span class="be-comment-name">
-                        <a href="blog-detail-2.html"><%=name%></a>
+                        <a href="blog-detail-2.html">${nothinghereyet}</a>
                     </span>
-                <span class="be-comment-time">
+                    <span class="be-comment-time">
                         <i class="fa fa-clock-o"></i>
                         May 27, 2015 at 3:14am
                     </span>
 
-                <p class="be-comment-text">
+                    <p class="be-comment-text">
 
-                    <%=kommentar%>
-                </p>
-                <c:forEach var="students" items="${students}" >
-                    ${student}
-                    <br/>
-                </c:forEach>
+                            ${comment}
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="be-comment">
-            <div class="be-img-comment">
-                <a href="blog-detail-2.html">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
-                </a>
-            </div>
-            <div class="be-comment-content">
-                    <span class="be-comment-name">
-                        <a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
-                    </span>
-                <span class="be-comment-time">
-                        <i class="fa fa-clock-o"></i>
-                        May 27, 2015 at 3:14am
-                    </span>
-                <p class="be-comment-text">
-                    Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo.
-                    Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant.
-                    Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-                </p>
-            </div>
-        </div>
-        <div class="be-comment">
-            <div class="be-img-comment">
-                <a href="blog-detail-2.html">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="be-ava-comment">
-                </a>
-            </div>
-            <div class="be-comment-content">
-                    <span class="be-comment-name">
-                        <a href="blog-detail-2.html">Cüneyt ŞEN</a>
-                    </span>
-                <span class="be-comment-time">
-                        <i class="fa fa-clock-o"></i>
-                        May 27, 2015 at 3:14am
-                    </span>
-                <p class="be-comment-text">
-                    Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-                </p>
-            </div>
-        </div>
+        </c:forEach>
+
+
         <form class="form-block" method="post" action="/AddCommentServlet">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">

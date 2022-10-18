@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="org.owasp.esapi.ESAPI" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.comments" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -182,13 +184,18 @@
   Object message = request.getAttribute("message");
 
   String name = request.getAttribute("name").toString();
-  String email = request.getAttribute("email").toString();
+  //String email = request.getAttribute("email").toString();
   //String kommentar = request.getAttribute("kommentar").toString();
 
   String alles = request.getAttribute("alles").toString();
     
   request.setAttribute("map", alles);
   String kommentar = ESAPI.encoder().encodeForHTML(request.getAttribute("kommentar").toString());
+  String email = ESAPI.encoder().encodeForHTML(request.getAttribute("email").toString());
+
+    comments com = new comments();
+
+  com = (comments) request.getAttribute("comments2");
 
 %>
 
@@ -217,10 +224,17 @@
             </div>
 </c:forEach>
 
-        <c:forEach var="item" items="<%=name%>" >
-            ${item}
-            <br/>
-        </c:forEach>
+<c:forEach items="${products}" var="product">
+    ${product}
+</c:forEach>
+
+${comments2.comment}
+
+
+<%=com%>
+
+
+
 
 </body>
 </html>
